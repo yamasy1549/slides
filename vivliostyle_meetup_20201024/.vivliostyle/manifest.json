@@ -1,0 +1,44 @@
+{
+  "@context": "https://readium.org/webpub-manifest/context.jsonld",
+  "metadata": {
+    "@type": "http://schema.org/Book",
+    "title": "Vivliostyle Themes",
+    "author": "yamasy1549 <sanae@yamasy.info>",
+    "language": "en",
+    "modified": "2020-10-24T06:04:48.442Z"
+  },
+  "links": [],
+  "readingOrder": [
+    {
+      "href": "artifacts/cover.html",
+      "type": "text/html",
+      "title": "Vivliostyle Themes"
+    },
+    {
+      "href": "artifacts/intro.html",
+      "type": "text/html",
+      "title": "やましー <small>@yamasy1549</small>"
+    },
+    {
+      "href": "artifacts/ch01.html",
+      "type": "text/html",
+      "title": "Vivliostyle Themes とは"
+    },
+    {
+      "href": "artifacts/ch02.html",
+      "type": "text/html",
+      "title": "公式 Themes の紹介"
+    },
+    {
+      "href": "artifacts/ch03.html",
+      "type": "text/html",
+      "title": "Themes を使って最速本づくり"
+    },
+    {
+      "href": "artifacts/ch04.html",
+      "type": "text/html",
+      "title": "これからの Themes"
+    }
+  ],
+  "resources": []
+}
