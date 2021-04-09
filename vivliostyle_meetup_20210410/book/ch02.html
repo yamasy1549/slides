@@ -1,0 +1,268 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Themes の作り方</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="themes/packages/@vivliostyle/theme-slide/theme.css">
+  </head>
+  <body>
+    <section class="cover" id="themes-の作り方">
+      <h1>Themes の作り方</h1>
+      <p>良ければ一緒に手を動かしましょう 💻</p>
+      <p><a href="https://github.com/yamasy1549/vivliostyle-theme-my-doujin">https://github.com/yamasy1549/vivliostyle-theme-my-doujin</a></p>
+    </section>
+    <section id="このハンズオンの設定">
+      <h1>このハンズオンの設定</h1>
+      <ul>
+        <li>「複数人の書き手による小説合同誌」を作ることになりました📖</li>
+        <li>1人1章分=1つの原稿ファイル (.md) を担当</li>
+        <li>全体を通した<strong>ページ番号</strong>、<strong>章番号</strong>がほしい</li>
+        <li><strong>目次</strong>がほしい</li>
+        <li>見た目は統一するが、<strong>書き手によってテーマカラーを変えたい</strong></li>
+      </ul>
+    </section>
+    <section id="①雛形から作ります">
+      <h1>①雛形から作ります</h1>
+      <p><code>yarn create vivliostyle-theme my-doujin</code></p>
+      <pre class="language-shell"><code class="language-shell">$ <span class="token function">yarn</span> create vivliostyle-theme my-doujin
+? description すごい合同誌のTheme
+? author name わたし
+? author email watashi@example.com
+? license AGPL-3.0
+? choose category novel
+
+Success<span class="token operator">!</span> Created vivliostyle-theme-my-doujin.
+
+<span class="token number">1</span>. <span class="token builtin class-name">cd</span> vivliostyle-theme-my-doujin
+<span class="token number">2</span>. edit scss/*.scss
+<span class="token number">3</span>. publish to <span class="token function">npm</span> <span class="token punctuation">(</span>$ <span class="token function">npm</span> publish<span class="token punctuation">)</span>
+
+✨  Done <span class="token keyword">in</span> <span class="token number">46</span>.57s.</code></pre>
+    </section>
+    <section id="①雛形から作ります-1">
+      <h1>①雛形から作ります</h1>
+      <pre class="language-shell"><code class="language-shell">$ <span class="token builtin class-name">cd</span> vivliostyle-theme-my-doujin
+$ tree <span class="token builtin class-name">.</span> -I node_modules
+<span class="token builtin class-name">.</span>
+├── LICENSE
+├── README.md
+├── example                  サンプル原稿
+│   ├── default.html
+│   └── default.md           🖋Markdownを書く
+├── package.json
+├── scss                     デフォルトで3つのスタイルファイル
+│   ├── theme_common.scss    🖋 Themeの共通部分
+│   ├── theme_print.scss     🖋 出版物 <span class="token punctuation">(</span>PDF<span class="token punctuation">)</span> 印刷用スタイル
+│   └── theme_screen.scss    🖋 出版物 <span class="token punctuation">(</span>HTML<span class="token punctuation">)</span> 閲覧用スタイル
+├── vivliostyle.config.js    🖋 プレビュー用設定ファイル
+└── yarn.lock</code></pre>
+    </section>
+    <section id="②サンプル原稿を用意します">
+      <h1>②サンプル原稿を用意します</h1>
+      <div class="center">
+        <div>
+          <figure class="language-markdown">
+            <figcaption>example/ch01.md</figcaption>
+            <pre class="language-markdown"><code class="language-markdown"><span class="token title important"><span class="token punctuation">#</span> {吾輩|わがはい}は猫である。</span>
+<span class="token title important"><span class="token punctuation">##</span> 夏目 漱石</span>
+{吾輩|わがはい}は猫である。名前はまだ無い。</code></pre>
+          </figure>
+          <figure class="language-markdown">
+            <figcaption>example/ch02.md</figcaption>
+            <pre class="language-markdown"><code class="language-markdown"><span class="token title important"><span class="token punctuation">#</span> 羅生門</span>
+<span class="token title important"><span class="token punctuation">##</span> 芥川 龍之介</span>
+ある日の暮方の事である。一人の{下人|げにん}が</code></pre>
+          </figure>
+        </div>
+        <figure class="language-javascript">
+          <figcaption>vivliostyle.config.js</figcaption>
+          <pre class="language-javascript"><code class="language-javascript">module<span class="token punctuation">.</span><span class="token property-access">exports</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
+  language<span class="token operator">:</span> <span class="token string">'ja'</span><span class="token punctuation">,</span>
+  theme<span class="token operator">:</span> <span class="token string">'theme_print.css'</span><span class="token punctuation">,</span>
+  entry<span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token string">'example/ch01.md'</span><span class="token punctuation">,</span>
+    <span class="token string">'example/ch02.md'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span></code></pre>
+        </figure>
+      </div>
+    </section>
+    <section id="③-yarn-dev-でプレビューします">
+      <h1>③ <code>yarn dev</code> でプレビューします</h1>
+      <p>これはデフォルトのスタイル</p>
+      <img src="assets/preview1.png" alt="Vivliostyle Viewer のプレビュー画面" style="width:80%" class="img_shade">
+    </section>
+    <section id="④ページ番号と章番号">
+      <h1>④ページ番号と章番号</h1>
+      <div class="center">
+        <div>
+          <figure class="language-css">
+            <figcaption>scss/theme_{print,screen}.scss</figcaption>
+            <pre class="language-css"><code class="language-css"><span class="token comment">/* ... */</span>
+<span class="token atrule"><span class="token rule">@import</span> <span class="token string">"_my_style"</span><span class="token punctuation">;</span></span></code></pre>
+          </figure>
+          <figure class="language-css">
+            <figcaption>scss/_my_style.scss</figcaption>
+            <pre class="language-css"><code class="language-css"><span class="token atrule"><span class="token rule">@page</span> <span class="token punctuation">:</span>first</span> <span class="token punctuation">{</span> <span class="token property">counter-reset</span><span class="token punctuation">:</span> p<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+<span class="token atrule"><span class="token rule">@page</span></span> <span class="token punctuation">{</span> <span class="token property">counter-increment</span><span class="token punctuation">:</span> p<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+
+<span class="token comment">/* 小口側、上にページ番号 */</span>
+<span class="token atrule"><span class="token rule">@page</span> <span class="token punctuation">:</span>left</span> <span class="token punctuation">{</span>
+  <span class="token atrule"><span class="token rule">@top-left</span></span> <span class="token punctuation">{</span> <span class="token property">content</span><span class="token punctuation">:</span> <span class="token function">counter</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token atrule"><span class="token rule">@page</span> <span class="token punctuation">:</span>right</span> <span class="token punctuation">{</span>
+  <span class="token atrule"><span class="token rule">@top-right</span></span> <span class="token punctuation">{</span> <span class="token property">content</span><span class="token punctuation">:</span> <span class="token function">counter</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+          </figure>
+        </div>
+        <img src="assets/preview2.png" alt="Vivliostyle Viewer のプレビュー画面" style="width:40%" class="img_shade">
+      </div>
+    </section>
+    <section id="④ページ番号と章番号-1">
+      <h1>④ページ番号と章番号</h1>
+      <div class="center">
+        <figure class="language-css">
+          <figcaption>scss/_my_style.scss</figcaption>
+          <pre class="language-css"><code class="language-css"><span class="token comment">/* 章番号 */</span>
+<span class="token atrule"><span class="token rule">@page</span> <span class="token punctuation">:</span><span class="token function">nth</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span></span> <span class="token punctuation">{</span>
+  <span class="token property">counter-increment</span><span class="token punctuation">:</span> chapter p<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/* 章タイトル */</span>
+<span class="token selector">h1</span> <span class="token punctuation">{</span>
+  <span class="token selector">&#x26;<span class="token pseudo-element">::before</span></span> <span class="token punctuation">{</span>
+    <span class="token property">content</span><span class="token punctuation">:</span> <span class="token string">"第 "</span> <span class="token function">counter</span><span class="token punctuation">(</span>chapter<span class="token punctuation">)</span> <span class="token string">" 章"</span><span class="token punctuation">;</span>
+    <span class="token property">display</span><span class="token punctuation">:</span> block<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+        </figure>
+        <img src="assets/preview3.png" alt="Vivliostyle Viewer のプレビュー画面" style="width:40%">
+      </div>
+    </section>
+    <section id="④ページ番号と章番号-2">
+      <h1>④ページ番号と章番号</h1>
+      <div class="center">
+        <figure class="language-css">
+          <figcaption>scss/_my_style.scss</figcaption>
+          <pre class="language-css"><code class="language-css"><span class="token comment">/* 章タイトル */</span>
+<span class="token selector">h1</span> <span class="token punctuation">{</span>
+  <span class="token property">border-top</span><span class="token punctuation">:</span> <span class="token number">10</span><span class="token unit">pt</span> solid <span class="token color">black</span><span class="token selector">;
+  &#x26;<span class="token pseudo-element">::before</span></span> <span class="token punctuation">{</span>
+    <span class="token property">content</span><span class="token punctuation">:</span> <span class="token string">"第 "</span> <span class="token function">counter</span><span class="token punctuation">(</span>chapter<span class="token punctuation">)</span> <span class="token string">" 章"</span><span class="token punctuation">;</span>
+    <span class="token property">display</span><span class="token punctuation">:</span> block<span class="token punctuation">;</span>
+    <span class="token property">font-size</span><span class="token punctuation">:</span> <span class="token number">80</span><span class="token unit">%</span><span class="token punctuation">;</span>
+    <span class="token property">margin</span><span class="token punctuation">:</span> <span class="token number">10</span><span class="token unit">pt</span> auto<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/* 著者名 */</span>
+<span class="token selector">h2</span> <span class="token punctuation">{</span>
+  <span class="token property">text-align</span><span class="token punctuation">:</span> right<span class="token punctuation">;</span>
+  <span class="token property">border-bottom</span><span class="token punctuation">:</span> <span class="token number">10</span><span class="token unit">pt</span> solid <span class="token color">black</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+        </figure>
+        <img src="assets/preview4.png" alt="Vivliostyle Viewer のプレビュー画面" style="width:40%" class="img_shade">
+      </div>
+    </section>
+    <section id="⑤-目次">
+      <h1>⑤ 目次</h1>
+      <div class="center">
+        <div>
+          <figure class="language-javascript">
+            <figcaption>vivliostyle.config.js</figcaption>
+            <pre class="language-javascript"><code class="language-javascript">module<span class="token punctuation">.</span><span class="token property-access">exports</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token comment">// ...</span>
+  entry<span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span> rel<span class="token operator">:</span> <span class="token string">'contents'</span><span class="token punctuation">,</span> theme<span class="token operator">:</span> <span class="token string">'theme_toc.css'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token comment">// ...</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  toc<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  tocTitle<span class="token operator">:</span> <span class="token string">"目次"</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span></code></pre>
+          </figure>
+          <figure class="language-css">
+            <figcaption>scss/theme_toc.scss</figcaption>
+            <pre class="language-css"><code class="language-css"><span class="token atrule"><span class="token rule">@import</span> <span class="token string">"theme_common"</span><span class="token punctuation">;</span></span></code></pre>
+          </figure>
+        </div>
+        <img src="assets/preview5.png" alt="Vivliostyle Viewer のプレビュー画面" style="width:40%" class="img_shade">
+      </div>
+    </section>
+    <section id="⑤-目次-1">
+      <h1>⑤ 目次</h1>
+      <div class="center">
+        <figure class="language-css">
+          <figcaption>scss/theme_toc.scss</figcaption>
+          <pre class="language-css"><code class="language-css"><span class="token atrule"><span class="token rule">@import</span> <span class="token string">"theme_common"</span><span class="token punctuation">;</span></span>
+
+<span class="token comment">/* いらないところを消す */</span>
+<span class="token atrule"><span class="token rule">@page</span> <span class="token punctuation">:</span>left</span> <span class="token punctuation">{</span>
+  <span class="token atrule"><span class="token rule">@top-left</span></span> <span class="token punctuation">{</span> <span class="token property">content</span><span class="token punctuation">:</span> <span class="token string">""</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token atrule"><span class="token rule">@page</span> <span class="token punctuation">:</span>right</span> <span class="token punctuation">{</span>
+  <span class="token atrule"><span class="token rule">@top-right</span></span> <span class="token punctuation">{</span> <span class="token property">content</span><span class="token punctuation">:</span> <span class="token string">""</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token selector">h1</span> <span class="token punctuation">{</span> <span class="token property">display</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+<span class="token selector">h2</span> <span class="token punctuation">{</span> <span class="token property">text-indent</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+
+<span class="token selector">nav ol</span> <span class="token punctuation">{</span>
+  <span class="token property">padding</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token property">list-style</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+        </figure>
+        <img src="assets/preview6.png" alt="Vivliostyle Viewer のプレビュー画面" style="width:40%" class="img_shade">
+      </div>
+    </section>
+    <section id="⑤-目次-2">
+      <h1>⑤ 目次</h1>
+      <div class="center">
+        <figure class="language-css">
+          <figcaption>scss/theme_toc.scss</figcaption>
+          <pre class="language-css"><code class="language-css"><span class="token selector">nav ol</span> <span class="token punctuation">{</span>
+  <span class="token comment">/* ... */</span>
+  <span class="token selector">li a</span> <span class="token punctuation">{</span>
+    <span class="token property">text-decoration</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>
+    <span class="token property">color</span><span class="token punctuation">:</span> inherit<span class="token selector">;
+    &#x26;<span class="token pseudo-element">::before</span></span> <span class="token punctuation">{</span>
+      <span class="token property">content</span><span class="token punctuation">:</span> <span class="token string">"第 "</span> <span class="token function">target-counter</span><span class="token punctuation">(</span>
+                 <span class="token function">attr</span><span class="token punctuation">(</span>href url<span class="token punctuation">)</span><span class="token punctuation">,</span> chapter<span class="token punctuation">)</span> <span class="token string">" 章"</span><span class="token punctuation">;</span>
+      <span class="token property">margin-right</span><span class="token punctuation">:</span> <span class="token number">1</span><span class="token unit">rem</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token selector">&#x26;<span class="token pseudo-element">::after</span></span> <span class="token punctuation">{</span>
+      <span class="token property">content</span><span class="token punctuation">:</span> <span class="token function">target-counter</span><span class="token punctuation">(</span><span class="token function">attr</span><span class="token punctuation">(</span>href url<span class="token punctuation">)</span><span class="token punctuation">,</span> p<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token property">float</span><span class="token punctuation">:</span> right<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+        </figure>
+        <img src="assets/preview7.png" alt="Vivliostyle Viewer のプレビュー画面" style="width:40%" class="img_shade">
+      </div>
+    </section>
+    <section id="⑥原稿ごとのテーマカラー">
+      <h1>⑥原稿ごとのテーマカラー</h1>
+      <div class="center">
+        <div>
+          <figure class="language-javascript">
+            <figcaption>vivliostyle.config.js</figcaption>
+            <pre class="language-javascript"><code class="language-javascript"><span class="token comment">// ...</span>
+    <span class="token punctuation">{</span>
+      path<span class="token operator">:</span> <span class="token string">'example/ch01.md'</span><span class="token punctuation">,</span>
+      theme<span class="token operator">:</span> <span class="token string">'theme_ch01.css'</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      path<span class="token operator">:</span> <span class="token string">'example/ch02.md'</span><span class="token punctuation">,</span>
+      theme<span class="token operator">:</span> <span class="token string">'theme_ch02.css'</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span></code></pre>
+          </figure>
+          <figure class="language-css">
+            <figcaption>scss/theme_ch01.scss</figcaption>
+            <pre class="language-css"><code class="language-css"><span class="token atrule"><span class="token rule">@import</span> <span class="token string">"theme_print"</span><span class="token punctuation">;</span></span>
+<span class="token selector">h1<span class="token punctuation">,</span> h2</span> <span class="token punctuation">{</span> <span class="token property">border-color</span><span class="token punctuation">:</span> <span class="token color">darkcyan</span><span class="token punctuation">;</span> <span class="token punctuation">}</span></code></pre>
+          </figure>
+        </div>
+        <img src="assets/preview8.png" alt="Vivliostyle Viewer のプレビュー画面" style="width:40%" class="img_shade">
+      </div>
+    </section>
+  </body>
+</html>

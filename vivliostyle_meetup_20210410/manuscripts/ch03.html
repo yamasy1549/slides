@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>近いうちできるようになること</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="themes/packages/@vivliostyle/theme-slide/theme.css">
+  </head>
+  <body>
+    <section class="cover" id="近いうちできるようになること">
+      <h1>近いうちできるようになること</h1>
+    </section>
+    <section id="原稿で-body-の-class-を設定">
+      <h1>原稿で <code>&#x3C;body></code> の class を設定</h1>
+      <div class="center">
+        <div>
+          <figure class="language-markdown">
+            <figcaption>ch01.md</figcaption>
+            <pre class="language-markdown"><code class="language-markdown"><span class="token front-matter-block"><span class="token punctuation">---</span>
+<span class="token font-matter yaml language-yaml">class: natsume</span>
+<span class="token punctuation">---</span></span>
+夏目漱石</code></pre>
+          </figure>
+          <figure class="language-markdown">
+            <figcaption>ch02.md</figcaption>
+            <pre class="language-markdown"><code class="language-markdown"><span class="token front-matter-block"><span class="token punctuation">---</span>
+<span class="token font-matter yaml language-yaml">class: akutagawa</span>
+<span class="token punctuation">---</span></span>
+芥川龍之介</code></pre>
+          </figure>
+        </div>
+        <div>
+          <ul>
+            <li>vfm@v1.0.0-alpha.18 にて<a href="https://github.com/vivliostyle/vfm/pull/78">実装済み</a></li>
+            <li><strong>原稿ファイルごとのスタイル付与</strong>が格段にやりやすくなる！
+              <ul>
+                <li>先程の例だとこんな感じ</li>
+              </ul>
+            </li>
+          </ul>
+          <figure class="language-scss">
+            <figcaption>scss/theme_common.scss</figcaption>
+            <pre class="language-scss"><code class="language-scss"><span class="token selector">body.natsume </span><span class="token punctuation">{</span>
+  <span class="token selector">h1, h2 </span><span class="token punctuation">{</span> <span class="token property">border-color</span><span class="token punctuation">:</span> <span class="token color">darkcyan</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token selector">body.akutagawa </span><span class="token punctuation">{</span>
+  <span class="token selector">h1, h2 </span><span class="token punctuation">{</span> <span class="token property">border-color</span><span class="token punctuation">:</span> <span class="token color">sienna</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+          </figure>
+        </div>
+      </div>
+    </section>
+    <section id="欧文文庫用-theme-32">
+      <h1>欧文文庫用 Theme <a href="https://github.com/vivliostyle/themes/pull/32">#32</a></h1>
+      <img src="assets/gutenberg.png" alt="theme-gutenberg を適用した出版物" style="width:40%" class="img_shade">
+    </section>
+    <section id="同時に複数の-theme-を適用する">
+      <h1>同時に複数の Theme を適用する</h1>
+      <p>Theme をコンポーネント化してより細かい単位で使えるかも</p>
+      <figure class="language-javascript">
+        <figcaption>vivliostyle.config.js</figcaption>
+        <pre class="language-javascript"><code class="language-javascript">theme<span class="token operator">:</span> <span class="token punctuation">[</span>
+  <span class="token string">'report.css'</span><span class="token punctuation">,</span>
+  <span class="token string">'twocolumn.css'</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span></code></pre>
+      </figure>
+    </section>
+    <section id="theme-の構造に一貫性をもたせる">
+      <h1>Theme の構造に一貫性をもたせる</h1>
+      <ul>
+        <li>現状の必須項目
+          <ul>
+            <li>Theme 名</li>
+            <li>Theme を読み込んだときのデフォルトの CSS ファイル</li>
+          </ul>
+        </li>
+        <li>現状の推奨項目
+          <ul>
+            <li>SCSS を使ってスタイルを書く</li>
+            <li>サンプル原稿を example/ に置く</li>
+          </ul>
+        </li>
+        <li>将来的に推奨したい
+          <ul>
+            <li>Theme を変えても使える<strong>共通のSCSS変数</strong>（文字サイズ、行間など） <a href="https://github.com/vivliostyle/themes/issues/19">#19</a></li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+  </body>
+</html>
