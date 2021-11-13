@@ -1,0 +1,43 @@
+{
+  "@context": [
+    "https://schema.org",
+    "https://www.w3.org/ns/pub-context"
+  ],
+  "type": "Book",
+  "conformsTo": "https://github.com/vivliostyle/vivliostyle-cli",
+  "author": "yamasy1549 <sanae@yamasy.info>",
+  "dateModified": "2021-11-13T15:13:14.256Z",
+  "name": "vivliostyle_meetup_20211113",
+  "readingOrder": [
+    {
+      "url": "cover.html",
+      "title": "Vivliostyle Theme<br>開発ガイドラインの公開 {.cover}"
+    },
+    {
+      "url": "intro.html",
+      "title": "はじめに"
+    },
+    {
+      "url": "ch01.html",
+      "title": "Vivliostyle Themes とは"
+    },
+    {
+      "url": "ch02.html",
+      "title": "Theme ドキュメントの紹介"
+    },
+    {
+      "url": "ch03.html",
+      "title": "create-vivliostyle-theme v0.4.0 の更新情報"
+    },
+    {
+      "url": "ch04.html",
+      "title": "今後の予定"
+    },
+    {
+      "url": "conclusion.html",
+      "title": "おわりに"
+    }
+  ],
+  "resources": [],
+  "links": []
+}

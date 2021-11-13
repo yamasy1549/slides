@@ -1,0 +1,74 @@
+/* Customized */
+
+@page {
+  padding: 0 !important;
+
+  @top-right-corner {
+    font-family: 'YuGothic', 'Yu Gothic', 'Meiryo', sans-serif !important;
+  }
+
+  @top-right {
+    font-family: 'YuGothic', 'Yu Gothic', 'Meiryo', sans-serif !important;
+  }
+}
+
+body > section {
+  padding: 5mm 15mm !important;
+}
+
+h1.cover {
+  height: auto;
+}
+
+.cover > h1,
+body > section > h1 {
+  font-size: 180% !important;
+}
+
+.cover h2 {
+  font-weight: 600 !important;
+  font-size: 140% !important;
+  margin-top: 0.5em !important;
+}
+
+section strong {
+  border-bottom: 4px solid lightcoral;
+}
+
+.center > * {
+  margin: 1rem 0.5em !important;
+}
+
+.themes_logo {
+  width: 100vw;
+  height: 100px;
+  object-fit: cover;
+  margin: 1em 0;
+}
+
+.img_shade {
+  filter: drop-shadow(3px 5px 10px rgb(180, 180, 180));
+}
+
+title {
+  string-set: title content();
+}
+
+@page {
+  @top-right {
+    content: string(title);
+  }
+}
+
+// @import "_shades_of_purple";
+
+code[class*='language-'],
+pre[class*='language-'] {
+  text-align: left;
+  line-height: 1.2;
+  font-size: 16px;
+
+  code {
+    background: transparent;
+  }
+}

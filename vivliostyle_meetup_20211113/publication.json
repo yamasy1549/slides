@@ -1,0 +1,19 @@
+{
+  "@context": [
+    "https://schema.org",
+    "https://www.w3.org/ns/pub-context"
+  ],
+  "type": "Book",
+  "conformsTo": "https://github.com/vivliostyle/vivliostyle-cli",
+  "author": "yamasy1549 <sanae@yamasy.info>",
+  "dateModified": "2021-11-13T11:38:48.836Z",
+  "name": "vivliostyle_meetup_20211113",
+  "readingOrder": [
+    {
+      "url": "slide.html",
+      "title": "Slideshow"
+    }
+  ],
+  "resources": [],
+  "links": []
+}
