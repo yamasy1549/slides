@@ -1,0 +1,16 @@
+{
+  "name": "vivliostyle-meetup-20220423",
+  "description": "vivliostyle_meetup_20220423",
+  "version": "0.0.0",
+  "author": "yamasy1549 <sanae@yamasy.info>",
+  "scripts": {
+    "build": "vivliostyle build",
+    "preview": "vivliostyle preview"
+  },
+  "dependencies": {
+    "@vivliostyle/cli": "latest",
+    "@vivliostyle/theme-slide": "^0.5.1"
+  },
+  "license": "AGPL-3.0",
+  "private": true
+}
